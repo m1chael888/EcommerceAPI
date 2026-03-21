@@ -1,4 +1,7 @@
 
+using EcommerceAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace EcommerceAPI;
 
 public class Program
@@ -8,7 +11,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllers();
-        // builder.Services.AddScoped();
+        builder.Services.AddDbContext<EcomContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("ConnectionString")));
 
         var app = builder.Build();
 
